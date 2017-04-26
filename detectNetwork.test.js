@@ -143,12 +143,78 @@ describe('MasterCard', function() {
 describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
-  it('has a prefix of 6011 and a length of 16');
-  it('has a prefix of 6011 and a length of 19');
+  var expect = chai.expect;
+ 
+  it('has a prefix of 6011 and a length of 16', function() {
+    expect(detectNetwork('6011123456789101')).to.equal('Discover');
+  });
+  it('has a prefix of 6011 and a length of 19', function() {
+    expect(detectNetwork('6011123456789101234')).to.equal('Discover');
+  });
+
+  it('has a prefix of 65 and a length of 16', function() {
+    expect(detectNetwork('6512345678912345')).to.equal('Discover');
+  });
+  it('has a prefix of 65 and a length of 19', function() {
+    expect(detectNetwork('6512345678912345678')).to.equal('Discover');
+  });
+
+  for (var prefix = 644; prefix <= 649; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 16', function() {
+        expect(detectNetwork(prefix + '1234567890123')).to.equal('Discover');
+      });
+    }) (prefix);
+  }
+
+  for (var prefix = 644; prefix <= 649; prefix++) {
+    (function(prefix) {
+      it('has a prefix of ' + prefix + ' and a length of 19', function() {
+        expect(detectNetwork(prefix + '1234567890123456')).to.equal('Discover');
+      });
+    }) (prefix);
+  }
 });
 
 describe('Maestro', function() {
   // Write full test coverage for the Maestro card
+  var expect = chai.expect;
+
+  for (var length = 12, num = '501812345678'; length <= 19; length++) {
+    (function(lengt, num) {
+      it('has a prefix of 5018 and a length of ' + length, function() {
+        expect(detectNetwork(num)).to.equal('Maestro');
+      });
+      num += "9";
+    }) (length, num);
+  }
+
+  for (var length = 12, num = '502012345678'; length <= 19; length++) {
+    (function(lengt, num) {
+      it('has a prefix of 5020 and a length of ' + length, function() {
+        expect(detectNetwork(num)).to.equal('Maestro');
+      });
+      num += "9";
+    }) (length, num);
+  }
+
+  for (var length = 12, num = '503812345678'; length <= 19; length++) {
+    (function(lengt, num) {
+      it('has a prefix of 5038 and a length of ' + length, function() {
+        expect(detectNetwork(num)).to.equal('Maestro');
+      });
+      num += "9";
+    }) (length, num);
+  }
+
+  for (var length = 12, num = '630412345678'; length <= 19; length++) {
+    (function(lengt, num) {
+      it('has a prefix of 6304 and a length of ' + length, function() {
+        expect(detectNetwork(num)).to.equal('Maestro');
+      });
+      num += "9";
+    }) (length, num);
+  }
 });
 
 describe('should support China UnionPay')
