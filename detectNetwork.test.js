@@ -181,39 +181,39 @@ describe('Maestro', function() {
   var expect = chai.expect;
 
   for (var length = 12, num = '501812345678'; length <= 19; length++) {
-    (function(lengt, num) {
+    (function(length, num) {
       it('has a prefix of 5018 and a length of ' + length, function() {
         expect(detectNetwork(num)).to.equal('Maestro');
       });
-      num += "9";
     }) (length, num);
+    num += "9";
   }
 
   for (var length = 12, num = '502012345678'; length <= 19; length++) {
-    (function(lengt, num) {
+    (function(length, num) {
       it('has a prefix of 5020 and a length of ' + length, function() {
         expect(detectNetwork(num)).to.equal('Maestro');
       });
-      num += "9";
     }) (length, num);
+    num += "9";
   }
 
   for (var length = 12, num = '503812345678'; length <= 19; length++) {
-    (function(lengt, num) {
+    (function(length, num) {
       it('has a prefix of 5038 and a length of ' + length, function() {
         expect(detectNetwork(num)).to.equal('Maestro');
       });
-      num += "9";
     }) (length, num);
+    num += "9";
   }
 
   for (var length = 12, num = '630412345678'; length <= 19; length++) {
-    (function(lengt, num) {
+    (function(length, num) {
       it('has a prefix of 6304 and a length of ' + length, function() {
         expect(detectNetwork(num)).to.equal('Maestro');
       });
-      num += "9";
     }) (length, num);
+    num += "9";
   }
 });
 
